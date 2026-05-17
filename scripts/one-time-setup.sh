@@ -16,17 +16,16 @@ fi
 
 echo ""
 echo "第 2 步：在 GitHub 创建仓库并推送代码"
-if gh repo view "$REPO" &>/dev/null; then
-  echo "仓库已存在: https://github.com/$REPO"
-else
-  gh repo create "$REPO" --public --source=. --remote=origin --push
-  echo "已创建并推送: https://github.com/$REPO"
-  exit 0
+if ! gh repo view "$REPO" &>/dev/null; then
+  gh repo create "$REPO" --public --description "石家庄糖尿病医院官网"
+  echo "已创建仓库: https://github.com/$REPO"
 fi
 
 git remote add origin "git@github.com:${REPO}.git" 2>/dev/null || \
   git remote set-url origin "git@github.com:${REPO}.git"
+
 git push -u origin main
+echo "已推送到: https://github.com/$REPO"
 
 echo ""
 echo "第 3 步：关联 Vercel（只需做一次）"
