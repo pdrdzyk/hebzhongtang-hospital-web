@@ -1,39 +1,35 @@
 import type { Metadata } from "next";
 import PageShell from "@/components/PageShell";
-import { careSystem, departments, sixPillars, site } from "@/lib/content";
+import CtaBand from "@/components/CtaBand";
+import { careSystem, complicationAreas, diabetesCareAreas, sixPillars } from "@/lib/content";
 
-export const metadata: Metadata = { title: "诊疗体系" };
+export const metadata: Metadata = { title: "就诊服务" };
 
 export default function ServicesPage() {
   return (
     <PageShell
-      label="Care System"
-      title="整合代谢照护体系"
-      intro="疏肝调气、六位一体 — 覆盖慢病全周期的结构化路径，而非单次门诊治疗。"
+      title="就诊服务"
+      intro="门诊、并发症专科与长期管理 — 中唐六位一体整合照护体系。"
+      breadcrumbs={[{ label: "就诊服务" }]}
     >
-      <section className="py-20 lg:py-28">
-        <div className="mx-auto max-w-6xl px-6 lg:px-10">
-          <ol className="divide-y divide-line border-y border-line">
-            {careSystem.map((item) => (
-              <li
-                key={item.step}
-                className="grid grid-cols-[3rem_1fr] gap-6 py-10 md:grid-cols-[4rem_1fr]"
-              >
-                <span className="text-sm text-ink-faint">{item.step}</span>
-                <div>
-                  <h2 className="text-[15px] font-medium text-ink">{item.title}</h2>
-                  <p className="prose-calm mt-2 text-sm text-ink-muted">{item.desc}</p>
-                </div>
-              </li>
+      <section id="outpatient" className="scroll-mt-28 border-b border-line py-12 lg:py-16">
+        <div className="mx-auto max-w-7xl px-6 lg:px-10">
+          <h2 className="font-serif text-2xl text-ink">门诊与核心服务</h2>
+          <div className="mt-8 grid gap-6 sm:grid-cols-2">
+            {diabetesCareAreas.map((a) => (
+              <div key={a.title} className="border border-line p-6">
+                <h3 className="font-medium text-ink">{a.title}</h3>
+                <p className="prose-calm mt-2 text-sm text-ink-muted">{a.desc}</p>
+              </div>
             ))}
-          </ol>
+          </div>
         </div>
       </section>
 
-      <section className="border-t border-line bg-paper-warm py-20 lg:py-28">
-        <div className="mx-auto max-w-6xl px-6 lg:px-10">
+      <section id="six-pillars" className="scroll-mt-28 border-b border-line bg-paper-warm py-12 lg:py-16">
+        <div className="mx-auto max-w-7xl px-6 lg:px-10">
           <h2 className="font-serif text-2xl text-ink">六位一体</h2>
-          <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {sixPillars.map((p) => (
               <div key={p.title}>
                 <h3 className="text-[15px] font-medium text-ink">{p.title}</h3>
@@ -44,24 +40,37 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      <section className="py-20 lg:py-28">
-        <div className="mx-auto max-w-6xl px-6 lg:px-10">
+      <section className="py-12 lg:py-16">
+        <div className="mx-auto max-w-7xl px-6 lg:px-10">
+          <h2 className="font-serif text-2xl text-ink">照护路径</h2>
+          <ol className="mt-8 divide-y divide-line border-y border-line">
+            {careSystem.map((c) => (
+              <li key={c.step} className="grid grid-cols-[3rem_1fr] gap-6 py-6">
+                <span className="text-sm text-ink-faint">{c.step}</span>
+                <div>
+                  <h3 className="font-medium text-ink">{c.title}</h3>
+                  <p className="prose-calm mt-1 text-sm text-ink-muted">{c.desc}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      <section className="border-t border-line bg-paper-warm py-12 lg:py-16">
+        <div className="mx-auto max-w-7xl px-6 lg:px-10">
           <h2 className="font-serif text-2xl text-ink">并发症专科</h2>
-          <ul className="mt-12 divide-y divide-line border-y border-line">
-            {departments.map((d) => (
-              <li key={d.name} className="flex flex-col gap-1 py-6 sm:flex-row sm:justify-between">
-                <span className="text-[15px] text-ink">{d.name}</span>
-                <span className="text-sm text-ink-muted sm:max-w-md sm:text-right">{d.desc}</span>
+          <ul className="mt-8 divide-y divide-line">
+            {complicationAreas.map((c) => (
+              <li key={c.title} className="py-4 text-sm">
+                <span className="font-medium text-ink">{c.title}</span>
+                <span className="text-ink-muted"> — {c.desc}</span>
               </li>
             ))}
           </ul>
-          <p className="mt-12 text-sm text-ink-muted">
-            <a href={`tel:${site.phoneRaw}`} className="text-ink underline-offset-4 hover:underline">
-              {site.phone}
-            </a>
-          </p>
         </div>
       </section>
+      <CtaBand />
     </PageShell>
   );
 }

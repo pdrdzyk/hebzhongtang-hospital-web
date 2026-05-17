@@ -21,11 +21,11 @@ const notoSerif = Noto_Serif_SC({
 export const metadata: Metadata = {
   icons: { icon: "/favicon.svg" },
   title: {
-    default: `${site.brand} · 慢性代谢病整合照护`,
-    template: `%s · ${site.brand}`,
+    default: `${site.name} · ${site.brand}慢病医疗`,
+    template: `%s · ${site.name}`,
   },
   description:
-    "中唐慢病医疗体系 — 三十年代谢病专科实践。系统性慢性代谢病管理，而非单次降糖治疗。",
+    "石家庄糖尿病医院 — 三十年糖尿病及并发症专科。糖尿病诊疗、并发症防治、患者指南与健康教育。",
 };
 
 export default function RootLayout({

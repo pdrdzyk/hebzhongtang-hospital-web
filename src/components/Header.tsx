@@ -2,99 +2,76 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState, useEffect } from "react";
-import { navLinks, site } from "@/lib/content";
+import { useState } from "react";
+import { mainNav, site, utilityLinks } from "@/lib/content";
 
 export default function Header() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${
-        scrolled ? "border-b border-line bg-paper/95 backdrop-blur-md" : "bg-transparent"
-      }`}
-    >
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6 lg:h-[4.5rem] lg:px-10">
-        <Link href="/" className="group flex flex-col">
-          <span className="text-[13px] font-medium tracking-[0.12em] text-ink uppercase">
-            {site.brand}
-          </span>
-          <span className="text-[11px] text-ink-faint">{site.brandFull}</span>
+    <header className="sticky top-0 z-50 border-b border-line bg-paper">
+      <div className="hidden border-b border-line bg-paper-warm lg:block">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-2 text-[12px] text-ink-faint lg:px-10">
+              <div className="flex gap-6">
+            {utilityLinks.map((u) => (
+              <Link key={u.label} href={u.href} className="hover:text-ink-muted">{u.label}</Link>
+            ))}
+          </div>
+          <a href={`tel:${site.phoneRaw}`} className="hover:text-ink">{site.phone}</a>
+        </div>
+      </div>
+
+      <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-6 py-4 lg:px-10">
+        <Link href="/" className="shrink-0">
+          <span className="block text-[14px] font-medium tracking-wide text-ink">{site.brand}</span>
+          <span className="block text-[11px] text-ink-faint">{site.name}</span>
         </Link>
 
-        <nav className="hidden items-center gap-10 lg:flex">
-          {navLinks.map((link) => {
-            const active = pathname === link.href;
-            return (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={`text-[13px] tracking-wide transition-colors ${
-                  active ? "text-ink" : "text-ink-muted hover:text-ink"
-                }`}
-              >
-                {link.label}
-              </Link>
-            );
-          })}
+        <nav className="hidden flex-1 justify-center xl:flex">
+          <ul className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
+            {mainNav.map((link) => {
+              const active = pathname === link.href || pathname.startsWith(link.href + "/");
+              return (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className={`text-[13px] whitespace-nowrap ${active ? "font-medium text-ink" : "text-ink-muted hover:text-ink"}`}
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
         </nav>
 
-        <div className="hidden items-center gap-8 lg:flex">
-          <a
-            href={`tel:${site.phoneRaw}`}
-            className="text-[13px] text-ink-muted transition hover:text-ink"
-          >
-            {site.phone}
-          </a>
+        <div className="hidden shrink-0 items-center gap-3 sm:flex">
           <Link
             href="/contact"
-            className="text-[13px] text-blue-medical underline-offset-4 hover:underline"
+            className="border border-ink/15 px-4 py-2 text-[13px] text-ink transition hover:border-ink/30"
           >
-            联系
+            预约咨询
           </Link>
         </div>
 
-        <button
-          type="button"
-          aria-label="菜单"
-          className="flex h-10 w-10 items-center justify-center text-ink lg:hidden"
-          onClick={() => setOpen(!open)}
-        >
+        <button type="button" aria-label="菜单" className="p-2 text-ink xl:hidden" onClick={() => setOpen(!open)}>
           <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.25}>
-            {open ? (
-              <path strokeLinecap="round" d="M6 18L18 6M6 6l12 12" />
-            ) : (
-              <path strokeLinecap="round" d="M4 8h16M4 16h16" />
-            )}
+            {open ? <path strokeLinecap="round" d="M6 18L18 6M6 6l12 12" /> : <path strokeLinecap="round" d="M4 8h16M4 16h16" />}
           </svg>
         </button>
       </div>
 
       {open && (
-        <div className="border-t border-line bg-paper px-6 py-6 lg:hidden">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="block py-3 text-[15px] text-ink-muted"
-              onClick={() => setOpen(false)}
-            >
+        <nav className="border-t border-line bg-paper px-6 py-4 xl:hidden">
+          {mainNav.map((link) => (
+            <Link key={link.href} href={link.href} className="block py-3 text-[15px] text-ink-muted" onClick={() => setOpen(false)}>
               {link.label}
             </Link>
           ))}
-          <a href={`tel:${site.phoneRaw}`} className="mt-4 block text-[13px] text-blue-medical">
-            {site.phone}
-          </a>
-        </div>
+          <Link href="/contact" className="mt-2 block py-3 text-[15px] font-medium text-ink" onClick={() => setOpen(false)}>预约咨询</Link>
+          <a href={`tel:${site.phoneRaw}`} className="block py-2 text-[13px] text-blue-medical">{site.phone}</a>
+        </nav>
       )}
     </header>
   );

@@ -1,26 +1,28 @@
+import Breadcrumbs from "@/components/Breadcrumbs";
+
+type Crumb = { label: string; href?: string };
+
 type Props = {
-  label: string;
   title: string;
   intro?: string;
+  breadcrumbs: Crumb[];
   children: React.ReactNode;
 };
 
-export default function PageShell({ label, title, intro, children }: Props) {
+export default function PageShell({ title, intro, breadcrumbs, children }: Props) {
   return (
     <>
-      <section className="border-b border-line pt-28 pb-16 lg:pt-32 lg:pb-20">
-        <div className="mx-auto max-w-6xl px-6 lg:px-10">
-          <p className="text-[11px] font-medium tracking-[0.2em] text-ink-faint uppercase">
-            {label}
-          </p>
-          <h1 className="mt-4 max-w-2xl font-serif text-3xl font-medium text-ink md:text-4xl">
+      <div className="border-b border-line bg-paper-warm pt-8 pb-12 lg:pb-16">
+        <div className="mx-auto max-w-7xl px-6 lg:px-10">
+          <Breadcrumbs items={breadcrumbs} />
+          <h1 className="mt-6 max-w-3xl font-serif text-3xl font-medium text-ink md:text-4xl">
             {title}
           </h1>
           {intro && (
-            <p className="prose-calm mt-6 max-w-xl text-[15px] text-ink-muted">{intro}</p>
+            <p className="prose-calm mt-5 max-w-2xl text-[15px] text-ink-muted">{intro}</p>
           )}
         </div>
-      </section>
+      </div>
       {children}
     </>
   );
