@@ -1,0 +1,83 @@
+@import "tailwindcss";
+
+@theme {
+  --color-navy-950: #06101f;
+  --color-navy-900: #0b1f3a;
+  --color-navy-800: #122d52;
+  --color-navy-700: #1a3d6b;
+  --color-teal-600: #0d9488;
+  --color-teal-500: #14b8a6;
+  --color-teal-400: #2dd4bf;
+  --color-gold-500: #c9a962;
+  --color-gold-400: #d4bc7a;
+  --color-cream-50: #faf9f7;
+  --color-cream-100: #f3f1ec;
+  --font-serif: "Noto Serif SC", "Songti SC", "STSong", serif;
+  --font-sans: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: #1e293b;
+  background: var(--color-cream-50);
+  -webkit-font-smoothing: antialiased;
+}
+
+.font-serif {
+  font-family: var(--font-serif);
+}
+
+/* Subtle medical grid pattern */
+.pattern-grid {
+  background-image:
+    linear-gradient(rgba(13, 148, 136, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(13, 148, 136, 0.03) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+/* Gold accent line */
+.accent-line {
+  background: linear-gradient(90deg, var(--color-gold-500), var(--color-teal-500));
+  height: 3px;
+  width: 48px;
+  border-radius: 2px;
+}
+
+/* Card hover lift */
+.card-lift {
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.card-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 24px 48px -12px rgba(11, 31, 58, 0.15);
+}
+
+/* Hero gradient */
+.hero-gradient {
+  background:
+    radial-gradient(ellipse 80% 60% at 70% 20%, rgba(13, 148, 136, 0.12), transparent),
+    radial-gradient(ellipse 60% 50% at 10% 80%, rgba(201, 169, 98, 0.08), transparent),
+    linear-gradient(165deg, #06101f 0%, #0b1f3a 45%, #122d52 100%);
+}
+
+/* Stat counter animation placeholder */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.7s ease-out forwards;
+}
