@@ -70,8 +70,7 @@ export default function HomePage() {
                 </a>
                 <div className="mt-8 grid grid-cols-2 gap-4">
                   {stats.map((s) => (
-                  ))}
-                  {stats.map((s) => (
+
                     <div
                       key={s.label}
                       className="rounded-xl border border-white/10 bg-navy-900/50 p-4"
@@ -185,10 +184,6 @@ export default function HomePage() {
           />
           <div className="mt-16 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {departments.map((d) => (
-            ))}
-            {departments.map((d) => (
-            ))}
-            {departments.map((d) => (
               <div
                 key={d.name}
                 className="card-lift rounded-xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm"
@@ -281,6 +276,7 @@ export default function HomePage() {
                 <div className={i < milestones.length - 1 ? "" : ""}>
                   <h3 className="font-serif text-lg font-semibold text-navy-900">{m.title}</h3>
                   <p className="mt-2 text-sm leading-relaxed text-slate-600">{m.desc}</p>
+                </div>
               </div>
             ))}
           </div>
