@@ -26,7 +26,7 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      <section id="six-pillars" className="scroll-mt-28 border-b border-line bg-paper-warm py-12 lg:py-16">
+      <section id="methodology" className="scroll-mt-28 border-b border-line bg-paper-warm py-12 lg:py-16">
         <div className="mx-auto max-w-7xl px-6 lg:px-10">
           <h2 className="font-serif text-2xl text-ink">六位一体</h2>
           <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -40,7 +40,7 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      <section className="py-12 lg:py-16">
+      <section id="follow-up" className="scroll-mt-28 py-12 lg:py-16">
         <div className="mx-auto max-w-7xl px-6 lg:px-10">
           <h2 className="font-serif text-2xl text-ink">照护路径</h2>
           <ol className="mt-8 divide-y divide-line border-y border-line">
