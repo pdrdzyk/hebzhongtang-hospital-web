@@ -11,25 +11,47 @@ npm run dev
 
 浏览器打开 [http://localhost:3000](http://localhost:3000)。
 
-## 部署到 Vercel（连接 GitHub）
+## 和 tang-life-sim 一样的自动更新方式
 
-1. 在 GitHub 新建仓库，将本项目推送上去：
+`tang-life-sim` 能「改完就上线」，是因为这条链路已经打通：
 
-```bash
-cd hebzhongtang-hospital-web
-git add .
-git commit -m "feat: 石家庄糖尿病医院官网"
-git branch -M main
-git remote add origin https://github.com/你的用户名/hebzhongtang-hospital-web.git
-git push -u origin main
+```
+本地改代码 → git push 到 GitHub → Vercel 监听仓库 → 自动构建并发布
 ```
 
-2. 登录 [Vercel](https://vercel.com)，点击 **Add New Project**。
-3. 选择刚创建的 GitHub 仓库，框架会自动识别为 **Next.js**。
-4. 保持默认构建设置（Build Command: `next build`，Output: 默认），点击 **Deploy**。
-5. 部署完成后可获得 `*.vercel.app` 域名；在 Vercel 项目 **Settings → Domains** 中绑定自有域名（如 `www.hebzhongtang.com`）。
+对应关系：
 
-每次推送到 `main` 分支，Vercel 会自动重新构建并发布。
+| tang-life-sim | 本医院官网 |
+|---------------|------------|
+| 仓库 `pdrdzyk/life-sim-game-tang` | 仓库 `pdrdzyk/hebzhongtang-hospital-web`（待创建） |
+| 线上 `life-sim-game-tang.vercel.app` | 例如 `hebzhongtang-hospital-web.vercel.app` |
+
+**只需配置一次**，之后你不需要再连 Vercel、不用手动 Deploy；我（或你）`git push` 后约 1–2 分钟线上就会更新。
+
+### 一次性配置（约 5 分钟）
+
+在项目目录执行：
+
+```bash
+cd ~/Desktop/hebzhongtang-hospital-web
+./scripts/one-time-setup.sh
+```
+
+脚本会：登录 GitHub → 创建仓库并推送 → 提示你在 Vercel 导入该仓库（和当初导入 `life-sim-game-tang` 一样）。
+
+Vercel 导入步骤：
+
+1. 打开 [vercel.com/new](https://vercel.com/new)
+2. **Import** → 选 `hebzhongtang-hospital-web`
+3. 框架识别为 **Next.js**，直接 **Deploy**
+
+### 以后的日常（和 tang-life-sim 一样）
+
+```bash
+./scripts/publish.sh "更新：改了首页文案"
+```
+
+或普通 `git push origin main` 即可，Vercel 会自动重新构建。
 
 ## 项目结构
 
