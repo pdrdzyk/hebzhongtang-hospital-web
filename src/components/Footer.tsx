@@ -3,63 +3,56 @@ import { navLinks, site } from "@/lib/content";
 
 export default function Footer() {
   return (
-    <footer className="bg-navy-950 text-slate-300">
-      <div className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
-        <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
-          <div className="lg:col-span-2">
-            <div className="flex items-center gap-3">
-              <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-teal-600">
-                <span className="font-serif text-lg font-bold text-white">中</span>
-              </div>
-              <div>
-                <p className="font-serif text-lg font-semibold text-white">{site.name}</p>
-                <p className="text-sm text-teal-400">{site.brand}</p>
-              </div>
-            </div>
-            <p className="mt-4 max-w-md text-sm leading-relaxed text-slate-400">
-              成立于 {site.founded} 年，专注糖尿病及并发症防治三十余年。河北省、石家庄市医保定点医院。
+    <footer className="border-t border-line bg-paper-warm">
+      <div className="mx-auto max-w-6xl px-6 py-16 lg:px-10 lg:py-20">
+        <div className="flex flex-col justify-between gap-12 md:flex-row md:items-start">
+          <div className="max-w-sm">
+            <p className="text-[13px] font-medium tracking-[0.12em] text-ink uppercase">
+              {site.brand}
+            </p>
+            <p className="mt-2 font-serif text-lg text-ink">{site.name}</p>
+            <p className="mt-4 text-sm leading-relaxed text-ink-muted">
+              成立于 {site.founded} 年 · 河北省、石家庄市医保定点
             </p>
           </div>
 
-          <div>
-            <h4 className="mb-4 text-sm font-semibold tracking-wider text-white uppercase">
-              快速导航
-            </h4>
-            <ul className="space-y-2 text-sm">
-              {navLinks.map((link) => (
-                <li key={link.href}>
-                  <Link href={link.href} className="transition-colors hover:text-teal-400">
-                    {link.label}
-                  </Link>
+          <div className="flex gap-16">
+            <div>
+              <p className="text-[11px] font-medium tracking-widest text-ink-faint uppercase">
+                导航
+              </p>
+              <ul className="mt-4 space-y-2">
+                {navLinks.map((link) => (
+                  <li key={link.href}>
+                    <Link
+                      href={link.href}
+                      className="text-sm text-ink-muted transition hover:text-ink"
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <p className="text-[11px] font-medium tracking-widest text-ink-faint uppercase">
+                联系
+              </p>
+              <ul className="mt-4 space-y-2 text-sm text-ink-muted">
+                <li>
+                  <a href={`tel:${site.phoneRaw}`} className="hover:text-ink">
+                    {site.phone}
+                  </a>
                 </li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="mb-4 text-sm font-semibold tracking-wider text-white uppercase">
-              联系我们
-            </h4>
-            <ul className="space-y-3 text-sm">
-              <li>
-                <span className="text-slate-500">咨询热线</span>
-                <br />
-                <a href={`tel:${site.phoneRaw}`} className="text-teal-400 hover:text-teal-300">
-                  {site.phone}
-                </a>
-              </li>
-              <li>
-                <span className="text-slate-500">地址</span>
-                <br />
-                {site.address}
-              </li>
-            </ul>
+                <li>{site.address}</li>
+              </ul>
+            </div>
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 text-xs text-slate-500 sm:flex-row">
-          <p>© {new Date().getFullYear()} {site.name} · 保留所有权利</p>
-          <p>河北省医保定点 · 石家庄市医保定点</p>
+        <div className="mt-16 flex flex-col gap-2 border-t border-line pt-8 text-[12px] text-ink-faint sm:flex-row sm:justify-between">
+          <p>© {new Date().getFullYear()} {site.name}</p>
+          <p>本网站信息仅供参考，具体诊疗请遵医嘱。</p>
         </div>
       </div>
     </footer>

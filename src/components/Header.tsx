@@ -2,97 +2,96 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { navLinks, site } from "@/lib/content";
 
 export default function Header() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 border-b border-white/10 bg-navy-950/90 backdrop-blur-xl">
-      <div className="mx-auto flex h-[72px] max-w-7xl items-center justify-between px-6 lg:px-8">
-        <Link href="/" className="flex items-center gap-3">
-          <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-teal-500 to-teal-600 shadow-lg shadow-teal-500/20">
-            <span className="font-serif text-lg font-bold text-white">中</span>
-          </div>
-          <div className="hidden sm:block">
-            <p className="font-serif text-[15px] font-semibold tracking-wide text-white">
-              {site.name}
-            </p>
-            <p className="text-[11px] tracking-[0.2em] text-teal-400/80 uppercase">
-              {site.brand}
-            </p>
-          </div>
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${
+        scrolled ? "border-b border-line bg-paper/95 backdrop-blur-md" : "bg-transparent"
+      }`}
+    >
+      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6 lg:h-[4.5rem] lg:px-10">
+        <Link href="/" className="group flex flex-col">
+          <span className="text-[13px] font-medium tracking-[0.12em] text-ink uppercase">
+            {site.brand}
+          </span>
+          <span className="text-[11px] text-ink-faint">{site.brandFull}</span>
         </Link>
 
-        <nav className="hidden items-center gap-1 lg:flex">
+        <nav className="hidden items-center gap-10 lg:flex">
           {navLinks.map((link) => {
             const active = pathname === link.href;
             return (
               <Link
                 key={link.href}
                 href={link.href}
-                className={`relative px-4 py-2 text-sm transition-colors ${
-                  active ? "text-white" : "text-slate-300 hover:text-white"
+                className={`text-[13px] tracking-wide transition-colors ${
+                  active ? "text-ink" : "text-ink-muted hover:text-ink"
                 }`}
               >
                 {link.label}
-                {active && (
-                  <span className="absolute bottom-0 left-1/2 h-0.5 w-6 -translate-x-1/2 rounded-full bg-gold-500" />
-                )}
               </Link>
             );
           })}
         </nav>
 
-        <div className="hidden items-center gap-4 md:flex">
+        <div className="hidden items-center gap-8 lg:flex">
           <a
             href={`tel:${site.phoneRaw}`}
-            className="text-sm font-medium text-teal-400 hover:text-teal-300"
+            className="text-[13px] text-ink-muted transition hover:text-ink"
           >
             {site.phone}
           </a>
           <Link
             href="/contact"
-            className="rounded-full bg-gradient-to-r from-teal-600 to-teal-500 px-5 py-2.5 text-sm font-medium text-white shadow-lg shadow-teal-600/25 transition hover:brightness-110"
+            className="text-[13px] text-blue-medical underline-offset-4 hover:underline"
           >
-            预约咨询
+            联系
           </Link>
         </div>
 
         <button
           type="button"
-          aria-label="打开菜单"
-          className="flex h-10 w-10 items-center justify-center rounded-lg text-white lg:hidden"
+          aria-label="菜单"
+          className="flex h-10 w-10 items-center justify-center text-ink lg:hidden"
           onClick={() => setOpen(!open)}
         >
-          <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.25}>
             {open ? (
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
+              <path strokeLinecap="round" d="M6 18L18 6M6 6l12 12" />
             ) : (
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 6h16M4 12h16M4 18h16" />
+              <path strokeLinecap="round" d="M4 8h16M4 16h16" />
             )}
           </svg>
         </button>
       </div>
 
       {open && (
-        <div className="border-t border-white/10 bg-navy-950 px-6 py-4 lg:hidden">
+        <div className="border-t border-line bg-paper px-6 py-6 lg:hidden">
           {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className="block border-b border-white/5 py-3 text-slate-200"
+              className="block py-3 text-[15px] text-ink-muted"
               onClick={() => setOpen(false)}
             >
               {link.label}
             </Link>
           ))}
-          <a
-            href={`tel:${site.phoneRaw}`}
-            className="mt-4 block text-center text-teal-400"
-          >
+          <a href={`tel:${site.phoneRaw}`} className="mt-4 block text-[13px] text-blue-medical">
             {site.phone}
           </a>
         </div>
