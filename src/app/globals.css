@@ -1,18 +1,46 @@
 @import "tailwindcss";
 
+/* Mayo-inspired institutional tokens (vibe study — not Mayo assets) */
 @theme {
-  --color-paper: #fafaf9;
-  --color-paper-warm: #f4f3f0;
-  --color-paper-muted: #eeedea;
-  --color-ink: #1a2a38;
-  --color-ink-muted: #4a5c6d;
-  --color-ink-faint: #7a8794;
-  --color-blue-medical: #4a6d8c;
-  --color-blue-deep: #2d4a63;
-  --color-blue-soft: #e4ebf1;
-  --color-line: #ddd9d2;
-  --font-serif: var(--font-noto-serif), "Songti SC", serif;
-  --font-sans: var(--font-inter), "PingFang SC", "Hiragino Sans GB", sans-serif;
+  --color-mayo-navy: #00264a;
+  --color-mayo-blue: #0057b8;
+  --color-mayo-blue-hover: #004a9c;
+  --color-mayo-link: #0066cc;
+  --color-mayo-bg: #ffffff;
+  --color-mayo-gray: #f4f4f4;
+  --color-mayo-gray-dark: #e8e8e8;
+  --color-mayo-text: #1e1e1e;
+  --color-mayo-text-muted: #4a4a4a;
+  --color-mayo-text-light: #6b6b6b;
+  --color-mayo-border: #d9d9d9;
+  /* Legacy aliases for subpages */
+  --color-blue-medical: #0057b8;
+  --color-blue-deep: #00264a;
+  --color-blue-soft: #e8f2fc;
+  --color-ink: #1e1e1e;
+  --color-ink-muted: #4a4a4a;
+  --color-ink-faint: #6b6b6b;
+  --color-line: #d9d9d9;
+  --color-paper: #ffffff;
+  --color-paper-warm: #f4f4f4;
+  --font-serif: var(--font-noto-serif), Georgia, serif;
+  --font-sans: var(--font-inter), "Helvetica Neue", "PingFang SC", sans-serif;
+}
+
+.section-pad {
+  padding: 2.75rem 0;
+}
+
+@media (min-width: 1024px) {
+  .section-pad {
+    padding: 3.5rem 0;
+  }
+}
+
+.card-institutional {
+  background: #fff;
+  border: 1px solid var(--color-mayo-border);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
 }
 
 html {
@@ -21,8 +49,9 @@ html {
 
 body {
   font-family: var(--font-sans);
-  color: var(--color-ink);
-  background: var(--color-paper);
+  font-size: 15px;
+  color: var(--color-mayo-text);
+  background: var(--color-mayo-bg);
   -webkit-font-smoothing: antialiased;
 }
 
@@ -30,48 +59,84 @@ body {
   font-family: var(--font-serif);
 }
 
-.prose-calm {
-  line-height: 1.7;
-  letter-spacing: 0.01em;
+/* Mayo section bands */
+.band-gray {
+  background: var(--color-mayo-gray);
+  border-top: 1px solid var(--color-mayo-border);
+  border-bottom: 1px solid var(--color-mayo-border);
 }
 
-/* Institutional section rhythm */
-.section-pad {
-  padding-top: 3.5rem;
-  padding-bottom: 3.5rem;
+.band-navy {
+  background: var(--color-mayo-navy);
+  color: #fff;
 }
 
-@media (min-width: 1024px) {
-  .section-pad {
-    padding-top: 4.5rem;
-    padding-bottom: 4.5rem;
-  }
+/* Cards — subtle shadow like hospital sites */
+.mayo-card {
+  background: #fff;
+  border: 1px solid var(--color-mayo-border);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
 }
 
-.hero-institutional {
-  background: linear-gradient(180deg, var(--color-blue-soft) 0%, var(--color-paper) 100%);
-  border-bottom: 1px solid var(--color-line);
+.mayo-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
-.card-institutional {
-  border: 1px solid var(--color-line);
-  background: white;
-  transition: border-color 0.2s, box-shadow 0.2s;
+.mayo-card-link {
+  display: block;
+  height: 100%;
+  transition: box-shadow 0.2s, border-color 0.2s;
 }
 
-.card-institutional:hover {
-  border-color: rgba(74, 109, 140, 0.35);
-  box-shadow: 0 4px 24px -8px rgba(26, 42, 56, 0.08);
+.mayo-card-link:hover {
+  border-color: var(--color-mayo-blue);
 }
 
-.stat-bar {
-  border-top: 1px solid var(--color-line);
-  border-bottom: 1px solid var(--color-line);
-  background: var(--color-paper-warm);
+/* Hero */
+.mayo-hero {
+  background: linear-gradient(135deg, #00264a 0%, #003d73 50%, #0057b8 100%);
+  color: #fff;
+}
+
+/* Action tile */
+.action-tile {
+  background: #fff;
+  border: 1px solid var(--color-mayo-border);
+  border-top: 4px solid var(--color-mayo-blue);
+  padding: 1.25rem 1rem;
+  text-align: center;
+  transition: border-color 0.2s, transform 0.15s;
+}
+
+.action-tile:hover {
+  border-top-color: var(--color-mayo-navy);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+}
+
+/* A-Z strip */
+.alpha-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2rem;
+  height: 2rem;
+  padding: 0 0.35rem;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-mayo-link);
+  border: 1px solid var(--color-mayo-border);
+  background: #fff;
+}
+
+.alpha-chip:hover {
+  background: var(--color-mayo-blue);
+  color: #fff;
+  border-color: var(--color-mayo-blue);
 }
 
 a:focus-visible,
 button:focus-visible {
-  outline: 2px solid var(--color-blue-medical);
-  outline-offset: 3px;
+  outline: 2px solid var(--color-mayo-blue);
+  outline-offset: 2px;
 }

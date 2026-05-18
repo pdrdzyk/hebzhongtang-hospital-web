@@ -360,3 +360,138 @@ export const patientJourney = [
   { step: "03", title: "制定方案", desc: "个体化治疗与生活方式指导。" },
   { step: "04", title: "长期随访", desc: "定期复查与远程健康管理。" },
 ];
+
+/** Mayo-style primary nav tabs */
+export const mayoPrimaryNav = [
+  { label: "患者诊疗", href: "/services" },
+  { label: "健康科普", href: "/education" },
+  { label: "医护团队", href: "/doctors" },
+  { label: "院区位置", href: "/contact#locations" },
+  { label: "关于医院", href: "/about" },
+];
+
+/** Large patient action tiles (Mayo request appointment / find doctor pattern) */
+export const patientActions = [
+  {
+    label: "预约就诊",
+    sub: "Request appointment",
+    href: "/contact#appointment",
+    icon: "calendar",
+  },
+  {
+    label: "查找医生",
+    sub: "Find a doctor",
+    href: "/doctors",
+    icon: "doctor",
+  },
+  {
+    label: "患者指南",
+    sub: "Patient guide",
+    href: "/patient-guide",
+    icon: "guide",
+  },
+  {
+    label: "联系我们",
+    sub: "Contact us",
+    href: "/contact",
+    icon: "contact",
+  },
+];
+
+/** Featured care areas — Mayo grid */
+export const featuredCareAreas = [
+  {
+    title: "糖尿病门诊",
+    desc: "初诊、复诊与长期血糖管理。",
+    href: "/services#outpatient",
+  },
+  {
+    title: "并发症筛查",
+    desc: "眼、肾、足、神经与心脑血管风险评估。",
+    href: "/care/complications",
+  },
+  {
+    title: "糖尿病足病",
+    desc: "足部溃疡与缺血的专业防治。",
+    href: "/care/complications#foot",
+  },
+  {
+    title: "糖尿病肾病",
+    desc: "早期干预，延缓肾功能损害。",
+    href: "/care/complications#kidney",
+  },
+  {
+    title: "糖尿病眼病",
+    desc: "视网膜病变筛查与随访。",
+    href: "/care/complications#eye",
+  },
+  {
+    title: "神经病变",
+    desc: "麻木、疼痛等症状专科管理。",
+    href: "/care/complications#nerve",
+  },
+  {
+    title: "营养与运动",
+    desc: "饮食、疏糖胰岛操与体重管理。",
+    href: "/services#methodology",
+  },
+  {
+    title: "远程咨询",
+    desc: "出院后健康管理指导。",
+    href: "/patient-guide#remote",
+  },
+];
+
+/** Mayo「Healing starts here」三栏信任 */
+export const healingColumns = [
+  {
+    title: "准确诊断是有效治疗的起点",
+    desc: "多学科评估与并发症筛查，避免误诊误治，为个体化方案奠定基础。",
+    link: { label: "了解糖尿病诊疗", href: "/care/diabetes" },
+  },
+  {
+    title: "三十年糖尿病专科实践",
+    desc: "1992 年成立，河北省、石家庄市医保定点医院，专注慢病而非短期营销。",
+    link: { label: "关于医院", href: "/about" },
+  },
+  {
+    title: "六位一体整合照护",
+    desc: "预防、干预、诊疗、康复、追踪与长期管理 — 结构化路径，非单一口号。",
+    link: { label: "就诊服务体系", href: "/services" },
+  },
+];
+
+/** I'd like to… quick links */
+export const idLikeToLinks = [
+  { label: "预约门诊", href: "/contact#appointment" },
+  { label: "查找医生", href: "/doctors" },
+  { label: "了解并发症", href: "/care/complications" },
+  { label: "阅读健康科普", href: "/education" },
+  { label: "查看院区地址", href: "/contact#locations" },
+  { label: "致电咨询", href: `tel:${site.phoneRaw}` },
+];
+
+/** Health library browse chips */
+export const healthBrowseChips = [
+  { label: "血糖管理", href: "/care/diabetes" },
+  { label: "并发症", href: "/care/complications" },
+  { label: "饮食营养", href: "/education" },
+  { label: "用药指导", href: "/education#article-3" },
+  { label: "运动康复", href: "/services#methodology" },
+  { label: "患者指南", href: "/patient-guide" },
+  { label: "科研学术", href: "/research" },
+  { label: "医保就诊", href: "/patient-guide#insurance" },
+];
+
+export const locations = [
+  {
+    name: "主院区",
+    address: site.address,
+    href: "/contact#locations",
+  },
+  {
+    name: "裕华院区",
+    address: site.addressAlt,
+    href: "/contact#locations",
+  },
+];
