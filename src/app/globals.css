@@ -92,7 +92,298 @@ body {
   border-color: var(--color-mayo-blue);
 }
 
-/* Institutional portal homepage — dense, operational */
+/* Institutional homepage — Mayo/Cleveland: calm spacing + medical trust */
+.inst-container {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (min-width: 1024px) {
+  .inst-container {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+.inst-hero {
+  background: #fff;
+  border-bottom: 1px solid var(--color-mayo-border);
+  padding: 2.5rem 0 3rem;
+}
+
+@media (min-width: 1024px) {
+  .inst-hero {
+    padding: 3.5rem 0 4rem;
+  }
+}
+
+.inst-eyebrow {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-mayo-text-light);
+  letter-spacing: 0.02em;
+}
+
+.inst-title {
+  margin-top: 0.75rem;
+  font-family: var(--font-serif);
+  font-size: 1.75rem;
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--color-mayo-navy);
+}
+
+@media (min-width: 1024px) {
+  .inst-title {
+    font-size: 2.25rem;
+  }
+}
+
+.inst-lead {
+  margin-top: 1rem;
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  color: var(--color-mayo-navy);
+  font-weight: 500;
+}
+
+.inst-body {
+  margin-top: 0.75rem;
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--color-mayo-text-muted);
+  max-width: 42rem;
+}
+
+.inst-btn-primary {
+  display: inline-block;
+  background: var(--color-mayo-blue);
+  color: #fff;
+  padding: 0.625rem 1.25rem;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.inst-btn-primary:hover {
+  background: var(--color-mayo-blue-hover);
+}
+
+.inst-btn-outline {
+  display: inline-block;
+  border: 1px solid var(--color-mayo-border);
+  padding: 0.625rem 1.25rem;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-mayo-navy);
+}
+
+.inst-btn-outline:hover {
+  border-color: var(--color-mayo-blue);
+  color: var(--color-mayo-blue);
+}
+
+.inst-btn-text {
+  display: inline-block;
+  padding: 0.625rem 0.75rem;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-mayo-link);
+}
+
+.inst-btn-text:hover {
+  text-decoration: underline;
+}
+
+.inst-action-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: 1px solid var(--color-mayo-border);
+  background: var(--color-mayo-gray);
+  padding: 1rem 1.125rem;
+  min-height: 5.5rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.inst-action-card:hover {
+  border-color: var(--color-mayo-blue);
+  background: #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.inst-action-label {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--color-mayo-navy);
+}
+
+.inst-action-sub {
+  margin-top: 0.25rem;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-mayo-text-light);
+}
+
+.inst-section {
+  padding: 3rem 0;
+}
+
+@media (min-width: 1024px) {
+  .inst-section {
+    padding: 4rem 0;
+  }
+}
+
+.inst-section-header {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  border-bottom: 1px solid var(--color-mayo-border);
+  padding-bottom: 1rem;
+}
+
+@media (min-width: 768px) {
+  .inst-section-header {
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+  }
+}
+
+.inst-section-title {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--color-mayo-navy);
+}
+
+.inst-section-desc {
+  margin-top: 0.5rem;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--color-mayo-text-muted);
+  max-width: 36rem;
+}
+
+.inst-section-link {
+  flex-shrink: 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-mayo-link);
+}
+
+.inst-section-link:hover {
+  text-decoration: underline;
+}
+
+.inst-card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--color-mayo-border);
+  background: #fff;
+  padding: 1.25rem 1.5rem;
+}
+
+.inst-card-hover {
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.inst-card-hover:hover {
+  border-color: var(--color-mayo-blue);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+}
+
+.inst-card-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--color-mayo-navy);
+}
+
+.inst-card-desc {
+  margin-top: 0.5rem;
+  flex: 1;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--color-mayo-text-muted);
+}
+
+.inst-card-link {
+  margin-top: 1rem;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-mayo-link);
+}
+
+.inst-aside {
+  background: var(--color-mayo-navy);
+  color: #fff;
+  padding: 1.75rem 1.5rem;
+}
+
+.inst-aside-btn-light {
+  display: block;
+  background: #fff;
+  color: var(--color-mayo-navy);
+  text-align: center;
+  padding: 0.625rem;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.inst-aside-btn-ghost {
+  display: block;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  text-align: center;
+  padding: 0.625rem;
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.inst-aside-btn-ghost:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.inst-step-card {
+  border: 1px solid var(--color-mayo-border);
+  background: #fff;
+  padding: 1.25rem;
+}
+
+.inst-step-num {
+  display: inline-flex;
+  height: 2rem;
+  width: 2rem;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-mayo-navy);
+  font-size: 13px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.inst-trust-card {
+  border-left: 4px solid var(--color-mayo-blue);
+  background: #fff;
+  padding: 1.5rem 1.25rem;
+  border: 1px solid var(--color-mayo-border);
+  border-left-width: 4px;
+}
+
+.inst-disclaimer {
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--color-mayo-border);
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--color-mayo-text-light);
+}
+
+/* Legacy portal — kept for subpages if needed */
 .portal-home {
   font-size: 14px;
 }

@@ -12,6 +12,12 @@ export const portalIdentity = {
   ],
 };
 
+/** Clinical intro — professional, trust-oriented */
+export const clinicalIntro = {
+  lead: "三十年专注糖尿病及并发症防治，提供可延续的慢病整合医疗。",
+  body: "涵盖血糖管理、并发症筛查、营养与运动指导、用药管理及出院后随访。在循证医学框架下，结合中唐六位一体照护体系，帮助患者稳定控糖并降低长期并发症风险。",
+};
+
 /** Top patient task bar — immediate operational paths */
 export const patientTaskBar = [
   { label: "预约门诊", href: "/contact#appointment" },

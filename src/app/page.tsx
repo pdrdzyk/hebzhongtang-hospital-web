@@ -2,416 +2,319 @@ import Link from "next/link";
 import {
   articles,
   complicationSpecialties,
+  credibilityItems,
   doctors,
-  patientEntryCards,
+  featuredCareAreas,
+  patientActions,
   patientGuideHome,
   site,
 } from "@/lib/content";
-import {
-  careSystemPillars,
-  clinicalNotices,
-  institutionalFacts,
-  operationalPathway,
-  portalIdentity,
-  patientTaskBar,
-  serviceDirectory,
-  specialtyDirectory,
-} from "@/lib/portal-content";
+import { clinicalIntro, institutionalFacts, operationalPathway, portalIdentity } from "@/lib/portal-content";
 
-function DenseLinkList({
+function SectionHeader({
   title,
-  items,
+  description,
+  href,
+  linkLabel,
 }: {
   title: string;
-  items: { label: string; href: string }[];
+  description?: string;
+  href?: string;
+  linkLabel?: string;
 }) {
   return (
-    <div className="portal-panel">
-      <h3 className="portal-panel-title">{title}</h3>
-      <ul className="portal-link-list">
-        {items.map((item) => (
-          <li key={item.href + item.label}>
-            <Link href={item.href}>{item.label}</Link>
-          </li>
-        ))}
-      </ul>
+    <div className="inst-section-header">
+      <div>
+        <h2 className="inst-section-title">{title}</h2>
+        {description && <p className="inst-section-desc">{description}</p>}
+      </div>
+      {href && linkLabel && (
+        <Link href={href} className="inst-section-link">
+          {linkLabel} →
+        </Link>
+      )}
     </div>
   );
 }
 
 export default function HomePage() {
   return (
-    <div className="portal-home">
-      {/* Compact institutional strip — NOT a hero */}
-      <section className="portal-strip border-b border-mayo-border bg-mayo-gray">
-        <div className="mx-auto max-w-[1400px] px-4 py-4 lg:px-6">
-          <div className="flex flex-col gap-3 lg:flex-row lg:items-start lg:justify-between">
-            <div>
-              <h1 className="text-[20px] font-bold text-mayo-navy lg:text-[22px]">
-                {portalIdentity.title}
-              </h1>
-              <p className="mt-1 text-[14px] text-mayo-text-muted">{portalIdentity.subtitle}</p>
-              <p className="mt-2 flex flex-wrap gap-x-3 gap-y-1 text-[12px] text-mayo-text-light">
-                {portalIdentity.credentials.map((c) => (
-                  <span key={c}>{c}</span>
-                ))}
+    <div className="inst-home">
+      {/* Modest hero — Cleveland/Mayo: clear identity + patient actions, not slogan billboard */}
+      <section className="inst-hero">
+        <div className="inst-container">
+          <div className="lg:grid lg:grid-cols-12 lg:gap-12 lg:items-start">
+            <div className="lg:col-span-7">
+              <p className="inst-eyebrow">
+                {portalIdentity.credentials.slice(0, 3).join(" · ")}
               </p>
-            </div>
-            <div className="flex shrink-0 flex-wrap gap-2">
-              <Link href="/contact#appointment" className="portal-btn-primary">
-                预约门诊
-              </Link>
-              <Link href="/doctors" className="portal-btn-secondary">
-                查找医生
-              </Link>
-              <a href={`tel:${site.phoneRaw}`} className="portal-btn-secondary">
-                {site.phone}
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Patient task bar */}
-      <section className="border-b border-mayo-border bg-white">
-        <div className="mx-auto max-w-[1400px] px-4 py-3 lg:px-6">
-          <p className="mb-2 text-[11px] font-bold uppercase tracking-wide text-mayo-text-light">
-            患者快速入口
-          </p>
-          <div className="flex flex-wrap gap-1.5">
-            {patientTaskBar.map((task) => (
-              <Link key={task.href} href={task.href} className="portal-task-chip">
-                {task.label}
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Clinical notices */}
-      <section className="border-b border-mayo-border bg-[#fff8e6]">
-        <div className="mx-auto max-w-[1400px] px-4 py-3 lg:px-6">
-          <p className="mb-2 text-[11px] font-bold uppercase text-mayo-navy">就诊提示</p>
-          <div className="grid gap-3 md:grid-cols-2">
-            {clinicalNotices.map((n) => (
-              <div key={n.title} className="text-[13px]">
-                <Link href={n.href} className="font-semibold text-mayo-link hover:underline">
-                  {n.title}
+              <h1 className="inst-title">{portalIdentity.title}</h1>
+              <p className="inst-lead">{clinicalIntro.lead}</p>
+              <p className="inst-body">{clinicalIntro.body}</p>
+              <div className="mt-8 flex flex-wrap gap-3">
+                <Link href="/contact#appointment" className="inst-btn-primary">
+                  预约门诊
                 </Link>
-                <span className="mx-2 text-mayo-text-light">|</span>
-                <span className="text-mayo-text-muted">{n.text}</span>
+                <Link href="/doctors" className="inst-btn-outline">
+                  查找医生
+                </Link>
+                <Link href="/patient-guide" className="inst-btn-text">
+                  患者指南
+                </Link>
               </div>
+            </div>
+            <div className="mt-10 grid grid-cols-2 gap-3 sm:gap-4 lg:col-span-5 lg:mt-0">
+              {patientActions.map((action) => (
+                <Link key={action.href} href={action.href} className="inst-action-card">
+                  <span className="inst-action-label">{action.label}</span>
+                  <span className="inst-action-sub">{action.sub}</span>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Find care — service cards */}
+      <section className="inst-section band-gray">
+        <div className="inst-container">
+          <SectionHeader
+            title="查找医疗服务"
+            description="按专科与诊疗需求进入相应页面，了解门诊、筛查与长期管理内容。"
+            href="/services"
+            linkLabel="全部就诊服务"
+          />
+          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {featuredCareAreas.map((area) => (
+              <Link key={area.title} href={area.href} className="inst-card inst-card-hover">
+                <h3 className="inst-card-title">{area.title}</h3>
+                <p className="inst-card-desc">{area.desc}</p>
+                <span className="inst-card-link">了解更多</span>
+              </Link>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Main 3-column operational directory */}
-      <section className="border-b border-mayo-border bg-white py-5">
-        <div className="mx-auto max-w-[1400px] px-4 lg:px-6">
-          <div className="grid gap-4 lg:grid-cols-3">
-            {serviceDirectory.map((block) => (
-              <DenseLinkList key={block.title} title={block.title} items={block.items} />
-            ))}
-          </div>
-          <div className="mt-4 grid gap-4 lg:grid-cols-2">
-            {specialtyDirectory.map((block) => (
-              <DenseLinkList key={block.title} title={block.title} items={block.items} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Care pathway + appointment box */}
-      <section className="border-b border-mayo-border bg-mayo-gray py-5">
-        <div className="mx-auto max-w-[1400px] px-4 lg:px-6">
-          <div className="grid gap-4 lg:grid-cols-12">
-            <div className="lg:col-span-8">
-              <h2 className="portal-section-title">慢病诊疗路径</h2>
-              <p className="mt-1 text-[13px] text-mayo-text-muted">
-                从预约到长期随访的标准就诊流程
-              </p>
-              <ol className="mt-4 space-y-0 border border-mayo-border bg-white">
-                {operationalPathway.map((step, i) => (
-                  <li
-                    key={step.step}
-                    className={`flex gap-4 border-b border-mayo-border p-4 last:border-b-0 ${
-                      i % 2 === 1 ? "bg-mayo-gray/50" : ""
-                    }`}
-                  >
-                    <span className="flex h-8 w-8 shrink-0 items-center justify-center bg-mayo-navy text-[13px] font-bold text-white">
-                      {step.step}
-                    </span>
-                    <div className="min-w-0 flex-1">
-                      <Link
-                        href={step.href}
-                        className="text-[15px] font-bold text-mayo-navy hover:text-mayo-blue"
-                      >
-                        {step.title}
-                      </Link>
-                      <p className="mt-1 text-[13px] text-mayo-text-muted">{step.desc}</p>
-                    </div>
-                  </li>
-                ))}
-              </ol>
-              <div className="mt-4 flex flex-wrap gap-2">
-                <span className="text-[12px] font-semibold text-mayo-text-muted">六位一体：</span>
-                {careSystemPillars.map((p) => (
-                  <Link key={p.label} href={p.href} className="portal-task-chip text-[12px]">
-                    {p.label}
+      {/* Diabetes + complications — medical content, two columns */}
+      <section className="inst-section">
+        <div className="inst-container">
+          <div className="lg:grid lg:grid-cols-12 lg:gap-10">
+            <div className="lg:col-span-7">
+              <SectionHeader
+                title="糖尿病整合照护"
+                description="血糖管理不仅是降糖，还包括生活方式、用药、筛查与长期随访。"
+                href="/care/diabetes"
+                linkLabel="糖尿病诊疗"
+              />
+              <div className="mt-8 space-y-4">
+                <div className="inst-card p-6">
+                  <h3 className="font-semibold text-mayo-navy">何时应考虑专科就诊？</h3>
+                  <p className="mt-2 text-[15px] leading-relaxed text-mayo-text-muted">
+                    新出现多饮多尿、体重下降或血糖异常；已确诊但控制不佳；或需要系统筛查神经、肾脏、
+                    眼底与足部等并发症时，建议尽早专科评估。
+                  </p>
+                  <Link href="/care/diabetes#when-to-see" className="mt-4 inline-block text-[14px] font-semibold text-mayo-link">
+                    了解诊疗评估 →
                   </Link>
-                ))}
-                <Link href="/services#methodology" className="text-[12px] font-semibold text-mayo-link">
-                  完整体系 →
+                </div>
+                <ul className="divide-y divide-mayo-border border border-mayo-border bg-white">
+                  {complicationSpecialties.map((c) => (
+                    <li key={c.title}>
+                      <Link
+                        href={c.href}
+                        className="flex flex-col gap-1 p-5 transition hover:bg-mayo-gray/60 sm:flex-row sm:items-center sm:justify-between"
+                      >
+                        <span className="font-semibold text-mayo-navy">{c.title}</span>
+                        <span className="text-[14px] text-mayo-text-muted sm:max-w-md sm:text-right">
+                          {c.desc}
+                        </span>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+                <Link href="/care/complications" className="text-[14px] font-semibold text-mayo-link">
+                  并发症专科总览 →
                 </Link>
               </div>
             </div>
-            <div className="lg:col-span-4">
-              <div className="portal-panel h-full border-mayo-navy bg-mayo-navy text-white">
-                <h3 className="text-[15px] font-bold">预约与到院信息</h3>
-                <dl className="mt-4 space-y-3 text-[13px]">
+
+            <aside className="mt-10 lg:col-span-5 lg:mt-0">
+              <div className="inst-aside">
+                <h3 className="text-[17px] font-bold">预约与到院</h3>
+                <p className="mt-2 text-[14px] text-white/80">
+                  建议提前电话预约，携带身份证、医保卡及既往检查报告。
+                </p>
+                <a href={`tel:${site.phoneRaw}`} className="mt-5 block font-serif text-[28px] font-semibold">
+                  {site.phone}
+                </a>
+                <p className="mt-2 text-[13px] text-white/70">{site.hours}</p>
+                <dl className="mt-6 space-y-4 border-t border-white/20 pt-6 text-[14px]">
                   <div>
-                    <dt className="text-white/60">全国热线</dt>
-                    <dd>
-                      <a href={`tel:${site.phoneRaw}`} className="text-lg font-bold text-white">
-                        {site.phone}
-                      </a>
-                    </dd>
+                    <dt className="text-white/55">主院区</dt>
+                    <dd className="mt-1">{site.address}</dd>
                   </div>
                   <div>
-                    <dt className="text-white/60">门诊时间</dt>
-                    <dd className="text-white/90">{site.hours}</dd>
-                  </div>
-                  <div>
-                    <dt className="text-white/60">主院区</dt>
-                    <dd className="text-white/90">{site.address}</dd>
-                  </div>
-                  <div>
-                    <dt className="text-white/60">裕华院区</dt>
-                    <dd className="text-white/90">{site.addressAlt}</dd>
+                    <dt className="text-white/55">裕华院区</dt>
+                    <dd className="mt-1">{site.addressAlt}</dd>
                   </div>
                 </dl>
-                <div className="mt-5 flex flex-col gap-2">
-                  <Link href="/contact#appointment" className="bg-white py-2.5 text-center text-[13px] font-bold text-mayo-navy">
+                <div className="mt-6 flex flex-col gap-2">
+                  <Link href="/contact#appointment" className="inst-aside-btn-light">
                     预约门诊
                   </Link>
-                  <Link
-                    href="/patient-guide"
-                    className="border border-white/40 py-2.5 text-center text-[13px] font-semibold text-white"
-                  >
-                    患者指南
+                  <Link href="/contact#locations" className="inst-aside-btn-ghost">
+                    交通与联系方式
                   </Link>
-                  <Link
-                    href="/contact#locations"
-                    className="border border-white/40 py-2.5 text-center text-[13px] font-semibold text-white"
-                  >
-                    交通与地图
+                </div>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      {/* Care pathway — spaced steps */}
+      <section className="inst-section band-gray">
+        <div className="inst-container">
+          <SectionHeader
+            title="就诊与长期管理流程"
+            description="从预约到随访的标准路径，帮助您了解每一步将发生什么。"
+            href="/patient-guide"
+            linkLabel="患者指南"
+          />
+          <ol className="mt-10 grid gap-4 md:grid-cols-5">
+            {operationalPathway.map((step) => (
+              <li key={step.step} className="inst-step-card">
+                <span className="inst-step-num">{step.step}</span>
+                <Link href={step.href} className="mt-3 block font-semibold text-mayo-navy hover:text-mayo-blue">
+                  {step.title}
+                </Link>
+                <p className="mt-2 text-[13px] leading-relaxed text-mayo-text-muted">{step.desc}</p>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      {/* Physicians */}
+      <section className="inst-section">
+        <div className="inst-container">
+          <SectionHeader
+            title="医护团队"
+            description="糖尿病及并发症专科医师，注重长期管理而非单次就诊。"
+            href="/doctors"
+            linkLabel="查看全部医师"
+          />
+          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {doctors.map((d) => (
+              <article key={d.name} className="inst-card">
+                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-mayo-gray font-serif text-lg font-semibold text-mayo-navy">
+                  {d.name.slice(0, 1)}
+                </div>
+                <h3 className="mt-4 font-semibold text-mayo-navy">{d.name}</h3>
+                <p className="text-[14px] font-medium text-mayo-blue">{d.title}</p>
+                <p className="mt-1 text-[12px] text-mayo-text-light">{d.specialty}</p>
+                <p className="mt-3 flex-1 text-[14px] leading-relaxed text-mayo-text-muted">{d.focus}</p>
+                <Link href="/contact#appointment" className="mt-4 text-[13px] font-semibold text-mayo-link">
+                  预约咨询 →
+                </Link>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Health library */}
+      <section className="inst-section band-gray">
+        <div className="inst-container">
+          <SectionHeader
+            title="患者健康教育"
+            description="由临床团队整理的疾病知识与自我管理建议，供您就诊前后参考。"
+            href="/education"
+            linkLabel="健康知识中心"
+          />
+          <div className="mt-10 grid gap-6 md:grid-cols-2">
+            {articles.map((a) => (
+              <article key={a.href} className="inst-card inst-card-hover">
+                <p className="text-[12px] font-medium text-mayo-text-light">
+                  {a.category} · {a.date}
+                </p>
+                <h3 className="mt-2 font-serif text-xl font-semibold text-mayo-navy">
+                  <Link href={a.href} className="hover:text-mayo-blue">
+                    {a.title}
                   </Link>
+                </h3>
+                <p className="mt-3 text-[15px] leading-relaxed text-mayo-text-muted">{a.excerpt}</p>
+                <Link href={a.href} className="mt-4 inline-block text-[14px] font-semibold text-mayo-link">
+                  阅读全文 →
+                </Link>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Trust */}
+      <section className="inst-section">
+        <div className="inst-container">
+          <SectionHeader
+            title="为什么选择我院"
+            description="可验证的专科积累与规范诊疗路径，是长期慢病管理的基础。"
+            href="/about"
+            linkLabel="关于医院"
+          />
+          <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {credibilityItems.slice(0, 3).map((item) => (
+              <div key={item.title} className="inst-trust-card">
+                <h3 className="font-semibold text-mayo-navy">{item.title}</h3>
+                <p className="mt-3 text-[15px] leading-relaxed text-mayo-text-muted">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+          <div className="mt-10 grid grid-cols-2 gap-6 border-t border-mayo-border pt-10 sm:grid-cols-3 lg:grid-cols-6">
+            {institutionalFacts.map((f) => (
+              <div key={f.label}>
+                <p className="text-[12px] font-medium text-mayo-text-light">{f.label}</p>
+                <p className="mt-1 text-[20px] font-bold text-mayo-navy">{f.value}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Patient guide + locations */}
+      <section className="inst-section band-gray">
+        <div className="inst-container">
+          <div className="lg:grid lg:grid-cols-2 lg:gap-12">
+            <div>
+              <SectionHeader title="患者实用信息" href="/patient-guide" linkLabel="完整指南" />
+              <ul className="mt-8 space-y-3">
+                {patientGuideHome.slice(0, 4).map((g) => (
+                  <li key={g.title}>
+                    <Link href={g.href} className="inst-card block p-5 inst-card-hover">
+                      <p className="font-semibold text-mayo-navy">{g.title}</p>
+                      <p className="mt-1 text-[14px] text-mayo-text-muted">{g.desc}</p>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <SectionHeader title="院区位置" href="/contact#locations" linkLabel="联系方式" />
+              <div className="mt-8 space-y-4">
+                <div className="inst-card p-6">
+                  <p className="text-[12px] font-bold uppercase text-mayo-text-light">主院区</p>
+                  <p className="mt-2 text-[15px] text-mayo-navy">{site.address}</p>
+                </div>
+                <div className="inst-card p-6">
+                  <p className="text-[12px] font-bold uppercase text-mayo-text-light">裕华院区</p>
+                  <p className="mt-2 text-[15px] text-mayo-navy">{site.addressAlt}</p>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* Find care by need */}
-      <section className="border-b border-mayo-border bg-white py-5">
-        <div className="mx-auto max-w-[1400px] px-4 lg:px-6">
-          <h2 className="portal-section-title">按需求查找诊疗</h2>
-          <table className="portal-table mt-3">
-            <thead>
-              <tr>
-                <th>您的需求</th>
-                <th>说明</th>
-                <th className="w-24">入口</th>
-              </tr>
-            </thead>
-            <tbody>
-              {patientEntryCards.map((card) => (
-                <tr key={card.title}>
-                  <td className="font-semibold text-mayo-navy">{card.title}</td>
-                  <td className="text-mayo-text-muted">{card.desc}</td>
-                  <td>
-                    <Link href={card.href} className="text-mayo-link font-semibold hover:underline">
-                      进入
-                    </Link>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </section>
-
-      {/* Complications table */}
-      <section className="border-b border-mayo-border bg-mayo-gray py-5">
-        <div className="mx-auto max-w-[1400px] px-4 lg:px-6">
-          <div className="flex items-baseline justify-between gap-4">
-            <h2 className="portal-section-title">并发症专科</h2>
-            <Link href="/care/complications" className="text-[13px] font-semibold text-mayo-link">
-              专科总览 →
-            </Link>
-          </div>
-          <table className="portal-table mt-3">
-            <thead>
-              <tr>
-                <th>专科</th>
-                <th>诊疗范围</th>
-                <th className="w-24">详情</th>
-              </tr>
-            </thead>
-            <tbody>
-              {complicationSpecialties.map((c) => (
-                <tr key={c.title}>
-                  <td className="font-semibold text-mayo-navy">{c.title}</td>
-                  <td className="text-mayo-text-muted">{c.desc}</td>
-                  <td>
-                    <Link href={c.href} className="font-semibold text-mayo-link hover:underline">
-                      查看
-                    </Link>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </section>
-
-      {/* Doctors table */}
-      <section className="border-b border-mayo-border bg-white py-5">
-        <div className="mx-auto max-w-[1400px] px-4 lg:px-6">
-          <div className="flex items-baseline justify-between gap-4">
-            <h2 className="portal-section-title">医护团队</h2>
-            <Link href="/doctors" className="text-[13px] font-semibold text-mayo-link">
-              全部医师 →
-            </Link>
-          </div>
-          <table className="portal-table mt-3">
-            <thead>
-              <tr>
-                <th>姓名</th>
-                <th>职称</th>
-                <th>专科</th>
-                <th>临床方向</th>
-                <th className="w-24">预约</th>
-              </tr>
-            </thead>
-            <tbody>
-              {doctors.map((d) => (
-                <tr key={d.name}>
-                  <td className="font-semibold text-mayo-navy">{d.name}</td>
-                  <td>{d.title}</td>
-                  <td>{d.specialty}</td>
-                  <td className="text-mayo-text-muted">{d.focus}</td>
-                  <td>
-                    <Link
-                      href="/contact#appointment"
-                      className="font-semibold text-mayo-link hover:underline"
-                    >
-                      预约
-                    </Link>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </section>
-
-      {/* Health library — dense list */}
-      <section className="border-b border-mayo-border bg-mayo-gray py-5">
-        <div className="mx-auto max-w-[1400px] px-4 lg:px-6">
-          <div className="flex items-baseline justify-between gap-4">
-            <h2 className="portal-section-title">慢病健康知识库</h2>
-            <Link href="/education" className="text-[13px] font-semibold text-mayo-link">
-              全部文章 →
-            </Link>
-          </div>
-          <table className="portal-table mt-3">
-            <thead>
-              <tr>
-                <th className="w-28">分类</th>
-                <th>标题</th>
-                <th className="w-24">日期</th>
-                <th className="w-24">阅读</th>
-              </tr>
-            </thead>
-            <tbody>
-              {articles.map((a) => (
-                <tr key={a.href}>
-                  <td className="text-[12px] text-mayo-text-light">{a.category}</td>
-                  <td>
-                    <Link href={a.href} className="font-semibold text-mayo-navy hover:text-mayo-blue">
-                      {a.title}
-                    </Link>
-                    <p className="mt-0.5 text-[12px] text-mayo-text-muted">{a.excerpt}</p>
-                  </td>
-                  <td className="text-[12px] text-mayo-text-light">{a.date}</td>
-                  <td>
-                    <Link href={a.href} className="font-semibold text-mayo-link hover:underline">
-                      阅读
-                    </Link>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </section>
-
-      {/* Patient guide table */}
-      <section className="border-b border-mayo-border bg-white py-5">
-        <div className="mx-auto max-w-[1400px] px-4 lg:px-6">
-          <div className="flex items-baseline justify-between gap-4">
-            <h2 className="portal-section-title">患者与访客信息</h2>
-            <Link href="/patient-guide" className="text-[13px] font-semibold text-mayo-link">
-              完整指南 →
-            </Link>
-          </div>
-          <table className="portal-table mt-3">
-            <thead>
-              <tr>
-                <th className="w-40">项目</th>
-                <th>说明</th>
-                <th className="w-24">详情</th>
-              </tr>
-            </thead>
-            <tbody>
-              {patientGuideHome.map((g) => (
-                <tr key={g.title}>
-                  <td className="font-semibold text-mayo-navy">{g.title}</td>
-                  <td className="text-mayo-text-muted">{g.desc}</td>
-                  <td>
-                    <Link href={g.href} className="font-semibold text-mayo-link hover:underline">
-                      查看
-                    </Link>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </section>
-
-      {/* Institutional facts bar */}
-      <section className="bg-mayo-navy py-4 text-white">
-        <div className="mx-auto max-w-[1400px] px-4 lg:px-6">
-          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
-            {institutionalFacts.map((f) => (
-              <div key={f.label} className="text-center lg:text-left">
-                <p className="text-[11px] uppercase tracking-wide text-white/55">{f.label}</p>
-                <p className="mt-1 text-[18px] font-bold">{f.value}</p>
-              </div>
-            ))}
-          </div>
-          <p className="mt-4 border-t border-white/15 pt-4 text-center text-[12px] text-white/60 lg:text-left">
-            本页信息供患者就诊参考，不能替代医师诊断与治疗建议。急症请拨打 120。
-            <Link href="/about" className="ml-3 text-white/80 underline hover:text-white">
-              关于医院
-            </Link>
-            <Link href="/research" className="ml-3 text-white/80 underline hover:text-white">
-              科研学术
-            </Link>
+          <p className="inst-disclaimer">
+            本网站内容仅供健康教育参考，不能替代医师面诊与个体化诊疗方案。如有急症，请拨打 120。
           </p>
         </div>
       </section>
