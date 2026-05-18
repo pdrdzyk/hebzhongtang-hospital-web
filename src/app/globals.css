@@ -92,10 +92,131 @@ body {
   border-color: var(--color-mayo-blue);
 }
 
-/* Hero */
-.mayo-hero {
-  background: linear-gradient(135deg, #00264a 0%, #003d73 50%, #0057b8 100%);
+/* Institutional portal homepage — dense, operational */
+.portal-home {
+  font-size: 14px;
+}
+
+.portal-strip {
+  padding: 0;
+}
+
+.portal-section-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--color-mayo-navy);
+}
+
+.portal-panel {
+  border: 1px solid var(--color-mayo-border);
+  background: #fff;
+  padding: 0.875rem 1rem;
+}
+
+.portal-panel-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--color-mayo-navy);
+  border-bottom: 1px solid var(--color-mayo-border);
+  padding-bottom: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.portal-link-list li {
+  border-bottom: 1px solid var(--color-mayo-gray);
+}
+
+.portal-link-list li:last-child {
+  border-bottom: none;
+}
+
+.portal-link-list a {
+  display: block;
+  padding: 0.4rem 0;
+  font-size: 13px;
+  color: var(--color-mayo-link);
+  font-weight: 500;
+}
+
+.portal-link-list a:hover {
+  color: var(--color-mayo-navy);
+  text-decoration: underline;
+}
+
+.portal-task-chip {
+  display: inline-block;
+  border: 1px solid var(--color-mayo-border);
+  background: var(--color-mayo-gray);
+  padding: 0.35rem 0.65rem;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-mayo-navy);
+}
+
+.portal-task-chip:hover {
+  border-color: var(--color-mayo-blue);
+  background: #fff;
+  color: var(--color-mayo-blue);
+}
+
+.portal-btn-primary {
+  display: inline-block;
+  background: var(--color-mayo-blue);
   color: #fff;
+  padding: 0.5rem 1rem;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.portal-btn-primary:hover {
+  background: var(--color-mayo-blue-hover);
+}
+
+.portal-btn-secondary {
+  display: inline-block;
+  border: 1px solid var(--color-mayo-border);
+  background: #fff;
+  color: var(--color-mayo-navy);
+  padding: 0.5rem 1rem;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.portal-btn-secondary:hover {
+  border-color: var(--color-mayo-blue);
+  color: var(--color-mayo-blue);
+}
+
+.portal-table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid var(--color-mayo-border);
+  background: #fff;
+  font-size: 13px;
+}
+
+.portal-table th {
+  text-align: left;
+  background: var(--color-mayo-gray);
+  border-bottom: 1px solid var(--color-mayo-border);
+  padding: 0.5rem 0.75rem;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--color-mayo-text-muted);
+}
+
+.portal-table td {
+  border-bottom: 1px solid var(--color-mayo-border);
+  padding: 0.6rem 0.75rem;
+  vertical-align: top;
+}
+
+.portal-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.portal-table tbody tr:hover {
+  background: #fafafa;
 }
 
 /* Action tile */
