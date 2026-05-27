@@ -1,0 +1,511 @@
+/* Premium chronic-care group — homepage only */
+
+.brand-home {
+  --brand-ink: #0f1816;
+  --brand-ink-muted: #4a5653;
+  --brand-ink-faint: #7a8481;
+  --brand-green: #1a3d36;
+  --brand-green-deep: #0d2420;
+  --brand-slate: #1e2a28;
+  --brand-cream: #f6f5f2;
+  --brand-cream-dark: #ebeae6;
+  --brand-accent: #9a4a3a;
+  --brand-copper: #a67c52;
+  --brand-white: #fafaf8;
+
+  background: var(--brand-cream);
+  color: var(--brand-ink);
+}
+
+/* —— Hero —— */
+.brand-hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+}
+
+.brand-hero-media {
+  position: absolute;
+  inset: 0;
+}
+
+.brand-hero-media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(15, 24, 22, 0.35) 0%,
+    rgba(15, 24, 22, 0.55) 45%,
+    rgba(13, 36, 32, 0.88) 100%
+  );
+}
+
+.brand-hero-inner {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 8rem 1.5rem 5rem;
+}
+
+@media (min-width: 1024px) {
+  .brand-hero-inner {
+    padding: 10rem 2.5rem 6rem;
+  }
+}
+
+.brand-eyebrow {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.brand-hero-title {
+  margin-top: 1.5rem;
+  font-family: var(--font-serif);
+  font-size: clamp(3rem, 8vw, 5.5rem);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: #fff;
+}
+
+.brand-hero-accent {
+  color: #e8b4a8;
+  font-weight: 500;
+}
+
+.brand-hero-lead {
+  margin-top: 1.75rem;
+  max-width: 32rem;
+  font-size: clamp(1.0625rem, 2vw, 1.25rem);
+  line-height: 1.65;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.brand-hero-body {
+  margin-top: 1rem;
+  max-width: 28rem;
+  font-size: 15px;
+  line-height: 1.75;
+  color: rgba(255, 255, 255, 0.62);
+}
+
+.brand-hero-actions {
+  margin-top: 2.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 1.5rem;
+  align-items: center;
+}
+
+.brand-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.875rem 1.75rem;
+  background: var(--brand-cream);
+  color: var(--brand-green-deep);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  transition: background 0.2s, color 0.2s;
+}
+
+.brand-btn-primary:hover {
+  background: #fff;
+}
+
+.brand-btn-text {
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.85);
+  letter-spacing: 0.02em;
+}
+
+.brand-btn-text:hover {
+  color: #fff;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+/* —— Sections —— */
+.brand-section {
+  padding: 5.5rem 0;
+}
+
+@media (min-width: 1024px) {
+  .brand-section {
+    padding: 7rem 0;
+  }
+}
+
+.brand-section--dark {
+  background: var(--brand-green-deep);
+  color: var(--brand-cream);
+}
+
+.brand-section--light {
+  background: var(--brand-white);
+}
+
+.brand-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+@media (min-width: 1024px) {
+  .brand-container {
+    padding: 0 2.5rem;
+  }
+}
+
+.brand-label {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.24em;
+  color: var(--brand-copper);
+  text-transform: uppercase;
+}
+
+.brand-section--dark .brand-label {
+  color: rgba(232, 180, 168, 0.85);
+}
+
+.brand-h2 {
+  margin-top: 1rem;
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: var(--brand-ink);
+}
+
+.brand-section--dark .brand-h2 {
+  color: var(--brand-cream);
+}
+
+.brand-intro {
+  margin-top: 1.25rem;
+  max-width: 36rem;
+  font-size: 16px;
+  line-height: 1.75;
+  color: var(--brand-ink-muted);
+}
+
+.brand-section--dark .brand-intro {
+  color: rgba(246, 245, 242, 0.72);
+}
+
+/* —— Complication system grid —— */
+.brand-system-grid {
+  margin-top: 4rem;
+  display: grid;
+  gap: 1px;
+  background: var(--brand-cream-dark);
+}
+
+@media (min-width: 768px) {
+  .brand-system-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .brand-system-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.brand-system-cell {
+  display: block;
+  background: var(--brand-white);
+  padding: 2rem 1.75rem;
+  min-height: 220px;
+  transition: background 0.25s;
+}
+
+.brand-system-cell:hover {
+  background: #fff;
+  box-shadow: 0 20px 50px rgba(15, 24, 22, 0.06);
+}
+
+.brand-system-code {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  color: var(--brand-ink-faint);
+}
+
+.brand-system-domain {
+  margin-top: 0.5rem;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  color: var(--brand-copper);
+}
+
+.brand-system-title {
+  margin-top: 1.25rem;
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: var(--brand-green-deep);
+}
+
+.brand-system-desc {
+  margin-top: 0.75rem;
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--brand-ink-muted);
+}
+
+/* —— Ecosystem —— */
+.brand-eco-list {
+  margin-top: 4rem;
+  display: grid;
+  gap: 3rem;
+}
+
+@media (min-width: 768px) {
+  .brand-eco-list {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.5rem 4rem;
+  }
+}
+
+.brand-eco-item {
+  display: block;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid rgba(246, 245, 242, 0.15);
+  transition: opacity 0.2s;
+}
+
+.brand-eco-item:hover {
+  opacity: 0.9;
+}
+
+.brand-eco-sub {
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  color: rgba(232, 180, 168, 0.7);
+}
+
+.brand-eco-title {
+  margin-top: 0.75rem;
+  font-family: var(--font-serif);
+  font-size: 1.75rem;
+  font-weight: 400;
+  color: var(--brand-cream);
+}
+
+.brand-eco-desc {
+  margin-top: 0.75rem;
+  font-size: 14px;
+  line-height: 1.7;
+  color: rgba(246, 245, 242, 0.65);
+}
+
+/* —— Research timeline —— */
+.brand-research-list {
+  margin-top: 4rem;
+}
+
+.brand-research-item {
+  display: grid;
+  gap: 1rem;
+  padding: 2rem 0;
+  border-top: 1px solid var(--brand-cream-dark);
+}
+
+@media (min-width: 768px) {
+  .brand-research-item {
+    grid-template-columns: 120px 1fr;
+    gap: 3rem;
+  }
+}
+
+.brand-research-year {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: var(--brand-accent);
+}
+
+.brand-research-title {
+  font-family: var(--font-serif);
+  font-size: 1.375rem;
+  font-weight: 500;
+  color: var(--brand-ink);
+}
+
+.brand-research-desc {
+  margin-top: 0.5rem;
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--brand-ink-muted);
+}
+
+/* —— Physicians —— */
+.brand-physician {
+  display: grid;
+  gap: 1rem;
+  padding: 2.5rem 0;
+  border-top: 1px solid var(--brand-cream-dark);
+}
+
+@media (min-width: 768px) {
+  .brand-physician {
+    grid-template-columns: 200px 1fr auto;
+    align-items: baseline;
+    gap: 2rem;
+  }
+}
+
+.brand-physician-name {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: var(--brand-ink);
+}
+
+.brand-physician-meta {
+  font-size: 14px;
+  color: var(--brand-ink-muted);
+}
+
+.brand-physician-link {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--brand-green);
+  white-space: nowrap;
+}
+
+.brand-physician-link:hover {
+  color: var(--brand-accent);
+}
+
+/* —— Journey —— */
+.brand-journey {
+  margin-top: 4rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem 3rem;
+}
+
+.brand-journey-step {
+  flex: 1 1 140px;
+  max-width: 200px;
+}
+
+.brand-journey-num {
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  color: var(--brand-copper);
+}
+
+.brand-journey-title {
+  margin-top: 0.75rem;
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  color: var(--brand-ink);
+}
+
+.brand-journey-desc {
+  margin-top: 0.35rem;
+  font-size: 13px;
+  color: var(--brand-ink-muted);
+}
+
+/* —— Environment —— */
+.brand-env {
+  position: relative;
+  min-height: 70vh;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+}
+
+.brand-env-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(13, 36, 32, 0.85) 0%, transparent 60%);
+}
+
+.brand-env-caption {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4rem 1.5rem;
+}
+
+@media (min-width: 1024px) {
+  .brand-env-caption {
+    padding: 5rem 2.5rem;
+  }
+}
+
+.brand-env-title {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 400;
+  color: #fff;
+}
+
+.brand-env-desc {
+  margin-top: 1rem;
+  max-width: 28rem;
+  font-size: 15px;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+/* —— Footer CTA strip (homepage only) —— */
+.brand-cta-strip {
+  background: var(--brand-ink);
+  color: var(--brand-cream);
+  padding: 4rem 0;
+}
+
+.brand-cta-phone {
+  margin-top: 1rem;
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  font-weight: 400;
+  color: #fff;
+}
+
+.brand-stats {
+  margin-top: 3rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+
+@media (min-width: 768px) {
+  .brand-stats {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.brand-stat-value {
+  font-family: var(--font-serif);
+  font-size: 2.25rem;
+  font-weight: 400;
+  color: var(--brand-green-deep);
+}
+
+.brand-stat-label {
+  margin-top: 0.35rem;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  color: var(--brand-ink-faint);
+}

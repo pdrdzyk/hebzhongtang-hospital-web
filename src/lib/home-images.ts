@@ -14,8 +14,12 @@ const u = (id: string, w = 1200) =>
 
 export const homeImages = {
   hero: {
-    src: u("photo-1576091160399-112ba8d25d1f", 1800),
-    alt: "医师在诊室为患者进行临床沟通",
+    src: u("photo-1586773860418-d47a45baa516", 2000),
+    alt: "明亮通透的高端医疗就诊环境",
+  },
+  heroEditorial: {
+    src: u("photo-1629909613654-28e377c9fede", 2000),
+    alt: "安静、现代的临床空间与自然光线",
   },
   heroAccent: {
     src: u("photo-1582719478250-c89cae4dc85b", 800),
@@ -56,6 +60,10 @@ export const homeImages = {
   interior: {
     src: u("photo-1519494026892-80bbd2d45ef1", 1600),
     alt: "医院内部走廊与就诊环境",
+  },
+  environment: {
+    src: u("photo-1582719478250-c89cae4dc85b", 1800),
+    alt: "温润的医疗空间与诊疗氛围",
   },
   technology: {
     src: u("photo-1579153909908-42dc0a24821e", 1200),
